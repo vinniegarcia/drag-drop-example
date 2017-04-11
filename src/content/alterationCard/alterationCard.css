@@ -1,0 +1,11 @@
+.alteration-card {
+    background: lavender;
+    border: 1px dashed #999;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: move;
+}
+
+.dragging {
+    opacity: 0.5;
+}
