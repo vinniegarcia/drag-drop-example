@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { Provider } from 'react-redux'
+import { DragDropContext } from 'react-dnd'
+import HTML5Backend from 'react-dnd-html5-backend'
 import store from './data/configureStore'
-import './App.css';
 import Sidebar from './sidebar/'
 import Content from './content/'
-import { DragDropContext } from 'react-dnd';
-import HTML5Backend from 'react-dnd-html5-backend';
+import './App.css'
 
 class App extends Component {
   render() {

@@ -7,7 +7,7 @@ import classnames from 'classnames'
 import * as actions from '../../data/actions'
 import { ItemTypes } from '../../constants/'
 import GeneCard from '../../content/geneCard/'
-import './genes.css'
+import './geneTarget.css'
 
 const geneTarget = {
   drop(props, monitor, component) {
