@@ -1,16 +1,16 @@
 import React, {Component} from 'react'
-import './alterationCard.css'
-import { DragSource } from 'react-dnd';
-import { ItemTypes } from '../../constants/'
+import { DragSource } from 'react-dnd'
 import classnames from 'classnames'
+import { ItemTypes } from '../../constants/'
+import './alterationCard.css'
 
 const alterationSource = {
   beginDrag(props) {
     return {
         id: props.id
-    };
+    }
   }
-};
+}
 
 function collect(connect, monitor) {
   return {

@@ -1,16 +1,16 @@
 import React, {Component} from 'react'
-import './geneCard.css'
-import { DragSource } from 'react-dnd';
+import { DragSource } from 'react-dnd'
 import { ItemTypes } from '../../constants/'
 import classnames from 'classnames'
+import './geneCard.css'
 
 const geneSource = {
   beginDrag(props) {
     return {
         id: props.id
-    };
+    }
   }
-};
+}
 
 function collect(connect, monitor) {
   return {

@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-// import PropTypes from 'prop-types'
-import { ItemTypes } from '../../constants/';
-import { DropTarget } from 'react-dnd';
-import classnames from 'classnames';
-import './alterationTarget.css'
-import AlterationCard from '../../content/alterationCard/'
+import PropTypes from 'prop-types'
+import { Set } from 'immutable'
+import classnames from 'classnames'
+import { DropTarget } from 'react-dnd'
 import * as actions from '../../data/actions'
+import { ItemTypes } from '../../constants/'
+import AlterationCard from '../../content/alterationCard/'
+import './alterationTarget.css'
 
 const alterationTarget = {
   drop(props, monitor, component) {
@@ -17,17 +18,24 @@ const alterationTarget = {
         moved: item
     }
   }
-};
+}
 
-function collect(connect, monitor) {
+const collect = (connect, monitor) => {
   return {
     connectDropTarget: connect.dropTarget(),
     isOver: monitor.isOver(),
     canDrop: monitor.canDrop()
-  };
+  }
 }
 
 class AlterationTarget extends Component {
+
+    static propTypes = {
+        isOver: PropTypes.bool,
+        connectDropTarget: PropTypes.func,
+        alterations: PropTypes.instanceOf(Set)
+    }
+
     renderAlt = (alteration) => (<AlterationCard id={alteration.get('id')} />)
 
     render () {
