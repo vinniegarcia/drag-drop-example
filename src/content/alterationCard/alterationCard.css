@@ -3,12 +3,18 @@
     border: 1px dashed #999;
     border-radius: 4px;
     padding: 5px 10px;
+    margin: 10px;
     cursor: move;
     display: flex;
     width: 100px;
 }
 .alteration {
     flex: 1;
+}
+
+.remove {
+    width: 20px;
+    cursor: pointer;
 }
 
 .dragging {
