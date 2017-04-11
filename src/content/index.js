@@ -1,8 +1,10 @@
 import React, {Component} from 'react'
 import GeneCard from './geneCard/'
 import AlterationCard from './alterationCard/'
+import './content.css'
 
 class Content extends Component {
+
     render () {
         return (
             <div className="content-area">

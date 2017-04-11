@@ -10,33 +10,30 @@ import GeneCard from '../../content/geneCard/'
 import './geneTarget.css'
 
 const geneTarget = {
-  drop(props, monitor, component) {
-    // Obtain the dragged item
-    const item = monitor.getItem()
-    props.dispatch(actions.dropGene(item))
-    return {
-        moved: item
+    drop (props, monitor, component) {
+        // Obtain the dragged item
+        const item = monitor.getItem()
+        props.dispatch(actions.dropGene(item))
+        return {}
     }
-  }
 }
 
-function collect(connect, monitor) {
-  return {
+const collect = (connect, monitor) => ({
     connectDropTarget: connect.dropTarget(),
     isOver: monitor.isOver(),
     canDrop: monitor.canDrop()
-  }
-}
+})
 
-class Genes extends Component {
+class GeneTarget extends Component {
 
     static propTypes = {
         isOver: PropTypes.bool,
         connectDropTarget: PropTypes.func,
-        genes: PropTypes.instanceOf(Set)
+        genes: PropTypes.instanceOf(Set),
+        onRemove: PropTypes.func
     }
 
-    renderGene = (gene) => (<GeneCard id={gene.get('id')} />)
+    renderGene = (gene) => (<GeneCard key={gene.get('id')} id={gene.get('id')} onRemove={this.props.onRemove(gene)} />)
 
     render () {
         const { connectDropTarget, isOver, genes } = this.props;
@@ -61,4 +58,4 @@ const mapStateToProps = ($$state, ownProps) => {
     }
 }
 
-export default connect(mapStateToProps)(DropTarget(ItemTypes.GENE, geneTarget, collect)(Genes))
+export default connect(mapStateToProps)(DropTarget(ItemTypes.GENE, geneTarget, collect)(GeneTarget))

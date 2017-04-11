@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import { DragSource } from 'react-dnd'
+import PropTypes from 'prop-types'
 import { ItemTypes } from '../../constants/'
 import classnames from 'classnames'
 import './geneCard.css'
@@ -20,16 +21,25 @@ function collect(connect, monitor) {
 }
 
 class GeneCard extends Component {
+
+    static propTypes = {
+        id: PropTypes.string,
+        connectDragSource: PropTypes.func,
+        isDragging: PropTypes.bool,
+        onRemove: PropTypes.func
+    }
+
     render () {
-        const { id, connectDragSource, isDragging } = this.props;
+        const { id, connectDragSource, isDragging, onRemove } = this.props;
         const classes = classnames({
             'gene-card': true,
             'dragging': isDragging
         })
         return connectDragSource(
-            <span className={classes}>
-                {id}
-            </span>
+            <div className={classes}>
+                <div className="gene">{id}</div>
+                { onRemove && <div className="remove fa fa-close" onClick={onRemove}></div> }
+            </div>
         )
     }
 }

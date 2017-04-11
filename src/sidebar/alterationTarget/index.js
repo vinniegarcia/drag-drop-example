@@ -10,33 +10,30 @@ import AlterationCard from '../../content/alterationCard/'
 import './alterationTarget.css'
 
 const alterationTarget = {
-  drop(props, monitor, component) {
-    // Obtain the dragged item
-    const item = monitor.getItem()
-    props.dispatch(actions.dropAlteration(item))
-    return {
-        moved: item
+    drop (props, monitor, component) {
+        // Obtain the dragged item
+        const item = monitor.getItem()
+        props.dispatch(actions.dropAlteration(item))
+        return {}
     }
-  }
 }
 
-const collect = (connect, monitor) => {
-  return {
+const collect = (connect, monitor) => ({
     connectDropTarget: connect.dropTarget(),
     isOver: monitor.isOver(),
     canDrop: monitor.canDrop()
-  }
-}
+})
 
 class AlterationTarget extends Component {
 
     static propTypes = {
         isOver: PropTypes.bool,
         connectDropTarget: PropTypes.func,
-        alterations: PropTypes.instanceOf(Set)
+        alterations: PropTypes.instanceOf(Set),
+        onRemove: PropTypes.func
     }
 
-    renderAlt = (alteration) => (<AlterationCard id={alteration.get('id')} />)
+    renderAlt = (alt) => (<AlterationCard id={alt.get('id')} key={alt.get('id')} onRemove={this.props.onRemove(alt)} />)
 
     render () {
         const { connectDropTarget, isOver, alterations } = this.props;
@@ -60,6 +57,5 @@ const mapStateToProps = ($$state, ownProps) => {
         alterations: $$state.get('alterations')
     }
 }
-
 
 export default connect(mapStateToProps)(DropTarget(ItemTypes.ALTERATION, alterationTarget, collect)(AlterationTarget))

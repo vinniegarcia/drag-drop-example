@@ -1,0 +1,9 @@
+.content-area {
+    display: flex;
+}
+
+.content-genes,
+.content-alterations {
+    width: 40%;
+    margin: 0 5%;
+}

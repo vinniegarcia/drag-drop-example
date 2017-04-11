@@ -17,5 +17,15 @@ export default createReducer(initialState, {
         const $$alterations = $$state.get('alterations')
         const $$newalterations = $$alterations.add(action.payload)
         return $$state.set('alterations', $$newalterations)
+    },
+    [actions.GENE_REMOVED]: ($$state, action) => {
+        const $$genes = $$state.get('genes')
+        const $$newGenes = $$genes.delete(action.payload)
+        return $$state.set('genes', $$newGenes)
+    },
+    [actions.ALTERATION_REMOVED]: ($$state, action) => {
+        const $$alterations = $$state.get('alterations')
+        const $$newalterations = $$alterations.delete(action.payload)
+        return $$state.set('alterations', $$newalterations)
     }
 })
