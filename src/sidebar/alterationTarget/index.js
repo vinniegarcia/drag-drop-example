@@ -33,7 +33,12 @@ class AlterationTarget extends Component {
         onRemove: PropTypes.func
     }
 
-    renderAlt = (alt) => (<AlterationCard id={alt.get('id')} key={alt.get('id')} onRemove={this.props.onRemove(alt)} />)
+    renderAlt = (alt) => (
+        <AlterationCard 
+            id={alt.get('id')} 
+            key={alt.get('id')} 
+            onRemove={this.props.onRemove(alt)} />
+    )
 
     render () {
         const { connectDropTarget, isOver, alterations } = this.props;

@@ -33,7 +33,12 @@ class GeneTarget extends Component {
         onRemove: PropTypes.func
     }
 
-    renderGene = (gene) => (<GeneCard key={gene.get('id')} id={gene.get('id')} onRemove={this.props.onRemove(gene)} />)
+    renderGene = (gene) => (
+        <GeneCard 
+            key={gene.get('id')} 
+            id={gene.get('id')} 
+            onRemove={this.props.onRemove(gene)} />
+    )
 
     render () {
         const { connectDropTarget, isOver, genes } = this.props;
